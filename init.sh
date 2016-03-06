@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
+git clone https://github.com/gitenth/enth web
 mkdir /home/box/web/uploads
-sudo cp /etc/nginx/sites-available/default default
 sudo rm /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-sudo cp ./etc/nginx.conf /etc/nginx/sites-available/default
-sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/test.conf
+sudo ln -s /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/test.conf
 sudo /etc/init.d/nginx restart
 
 #там два каталога, sites-available, и sites-enabled, заходите в sites-available,
