@@ -3,8 +3,8 @@ def wsgi_application(environ, start_response):
     header = [
         ('Content-Type', 'text/plain')
     ]
-    body = environ.get('QUERY_STRING')
-    stroka = body[body.find('?')+1: ]
-    stroka = stroka.split('&')
+    stroka = ''
+    for item in resp:
+        stroka += item+'\r\n'
     start_response(status, header)
-    return stroka[0], stroka[1], stroka[2]
+    return stroka
