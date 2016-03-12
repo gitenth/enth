@@ -15,7 +15,7 @@ cp /home/box/web/views.py /home/box/web/ask/qa/
 rm /home/box/web/ask/ask/urls.py
 cp /home/box/web/urls.py /home/box/web/ask/ask/
 cd /home/box/web/ask/ask
-sudo gunicorn --bind 0.0.0.0:8000 ask.wsgi:application
+sudo (gunicorn --bind 0.0.0.0:8000 ask.wsgi:application &)
 
 
 #там два каталога, sites-available, и sites-enabled, заходите в sites-available,
