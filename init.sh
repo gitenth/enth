@@ -10,7 +10,7 @@ cd /home/box/web
 django-admin startproject ask
 cd /home/box/web/ask
 python manage.py startapp qa
-rm /home/box/web/ask/qa views.py
+rm /home/box/web/ask/qa/views.py
 cp /home/box/web/views.py /home/box/web/ask/qa/
 rm /home/box/web/ask/ask/urls.py
 cp /home/box/web/urls.py /home/box/web/ask/ask/
