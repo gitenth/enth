@@ -11,10 +11,10 @@ sudo ln -s /home/box/web/etc/gunicorn.conf   /etc/gunicorn.d/test
 sudo /etc/init.d/gunicorn restart
 
 #
-sudo pip3 install django
-sudo pip3 install gunicorn
-sudo apt-get install python3-dev libmysqlclient-dev
-sudo pip3 install mysqlclient 
+#sudo pip3 install django
+#sudo pip3 install gunicorn
+#sudo apt-get install python3-dev libmysqlclient-dev
+#sudo pip3 install mysqlclient 
 
 #django-project  create
 cd /home/box/web
