@@ -29,10 +29,11 @@ rm /home/box/web/ask/ask/settings.py
 cp /home/box/web/edit/settings.py /home/box/web/ask/ask/
 
 #model.py
-rm /home/box/web/ask/qa/model.py
-cp /home/box/web/edit/model.py /home/box/web/ask/qa/
+rm /home/box/web/ask/qa/models.py
+cp /home/box/web/edit/models.py /home/box/web/ask/qa/
 
 #mysql - configuration
+sudo /etc/init.d/mysql restart
 mysql -uroot -e "create database myproject;"
 mysql -uroot -e "CREATE USER 'enth'@'localhost' IDENTIFIED BY PASSWORD 'waret1';"
 mysql -uroot -e "GRANT ALL PRIVILEGES ON * . * TO 'enth'@'localhost';"
@@ -43,7 +44,7 @@ python /home/box/web/ask/manage.py syncdb
 
 #gunicorn - start
 cd /home/box/web/ask/ask
-sudo (gunicorn --bind 0.0.0.0:8000 ask.wsgi:application &)
+sudo gunicorn --bind 0.0.0.0:8000 ask.wsgi:application &
 
 
 #там два каталога, sites-available, и sites-enabled, заходите в sites-available,
