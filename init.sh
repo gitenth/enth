@@ -11,7 +11,10 @@ sudo ln -s /home/box/web/etc/gunicorn.conf   /etc/gunicorn.d/test
 sudo /etc/init.d/gunicorn restart
 
 #
-sudo apt-get install python-mysqldb
+sudo pip3 install django
+sudo pip3 install gunicorn
+sudo apt-get install python3-dev libmysqlclient-dev
+sudo pip3 install mysqlclient 
 
 #django-project  create
 cd /home/box/web
@@ -47,7 +50,7 @@ python /home/box/web/ask/manage.py syncdb
 
 #gunicorn - start
 cd /home/box/web/ask/ask
-sudo gunicorn --bind 0.0.0.0:8000 ask.wsgi:application &
+sudo /usr/local/bin/gunicorn --bind 0.0.0.0:8000 ask.wsgi:application &
 
 
 #там два каталога, sites-available, и sites-enabled, заходите в sites-available,
