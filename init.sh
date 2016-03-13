@@ -35,7 +35,7 @@ cp /home/box/web/edit/models.py /home/box/web/ask/qa/
 #mysql - configuration
 sudo /etc/init.d/mysql restart
 mysql -uroot -e "create database myproject;"
-mysql -uroot -e "CREATE USER 'enth'@'localhost' IDENTIFIED BY PASSWORD 'waret1';"
+mysql -uroot -e "CREATE USER 'enth'@'localhost' IDENTIFIED BY 'waret1';"
 mysql -uroot -e "GRANT ALL PRIVILEGES ON * . * TO 'enth'@'localhost';"
 mysql -uroot -e "FLUSH PRIVILEGES;"
 
