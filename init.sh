@@ -10,6 +10,9 @@ sudo /etc/init.d/nginx restart
 sudo ln -s /home/box/web/etc/gunicorn.conf   /etc/gunicorn.d/test
 sudo /etc/init.d/gunicorn restart
 
+#
+sudo apt-get install python-mysqldb
+
 #django-project  create
 cd /home/box/web
 django-admin startproject ask
@@ -28,14 +31,14 @@ cp /home/box/web/edit/urls.py /home/box/web/ask/ask/
 rm /home/box/web/ask/ask/settings.py
 cp /home/box/web/edit/settings.py /home/box/web/ask/ask/
 
-#model.py
+#models.py
 rm /home/box/web/ask/qa/models.py
 cp /home/box/web/edit/models.py /home/box/web/ask/qa/
 
 #mysql - configuration
 sudo /etc/init.d/mysql restart
 mysql -uroot -e "create database myproject;"
-mysql -uroot -e "CREATE USER 'enth'@'localhost' IDENTIFIED BY 'waret1';"
+mysql -uroot -e "CREATE USER 'enth'@'localhost' IDENTIFIED BY 'password';"
 mysql -uroot -e "GRANT ALL PRIVILEGES ON * . * TO 'enth'@'localhost';"
 mysql -uroot -e "FLUSH PRIVILEGES;"
 
