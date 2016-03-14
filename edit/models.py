@@ -9,12 +9,9 @@ class Question(models.Model):
     rating = models.IntegerField(default=0)
     author = models.ForeignKey(User)
     likes = models.ManyToManyField(User, related_name='likes_set')
-    class Meta:
-        db_table = 'question'
+
 
 class Answer(models.Model):
-    class Meta:
-        db_table = 'answer'
     text = models.TextField()
     added_at = models.DateTimeField(auto_now_add = True)
     question = models.ForeignKey(Question)
