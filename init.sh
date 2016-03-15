@@ -22,13 +22,13 @@ django-admin startproject ask
 cd /home/box/web/ask
 python manage.py startapp qa
 
-#views.py
+#ask_views.py
 rm /home/box/web/ask/qa/views.py
-cp /home/box/web/edit/views.py /home/box/web/ask/qa/
+cp /home/box/web/edit/ask_views.py /home/box/web/ask/qa/views.py
 
-#urls.py
+#ask_urls.py
 rm /home/box/web/ask/ask/urls.py
-cp /home/box/web/edit/urls.py /home/box/web/ask/ask/
+cp /home/box/web/edit/ask_urls.py /home/box/web/ask/ask/urls.py
 
 #settings.py
 rm /home/box/web/ask/ask/settings.py
@@ -50,7 +50,7 @@ python /home/box/web/ask/manage.py syncdb
 
 #gunicorn - start
 cd /home/box/web/ask/ask
-sudo gunicorn --bind 0.0.0.0:8000 ask.wsgi:application &
+sudo gunicorn --bind 0.0.0.0:8080 ask.wsgi:application
 
 
 #там два каталога, sites-available, и sites-enabled, заходите в sites-available,
