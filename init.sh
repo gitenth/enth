@@ -54,7 +54,7 @@ python /home/box/web/ask/manage.py syncdb
 #gunicorn - start
 #cd /home/box/web/ask/ask
 #sudo gunicorn --bind 0.0.0.0:8080 ask.wsgi:application
-python /home/box/web/ask/manage.py runserver
+python /home/box/web/ask/manage.py runserver 0.0.0.0:8080
 
 
 #там два каталога, sites-available, и sites-enabled, заходите в sites-available,
