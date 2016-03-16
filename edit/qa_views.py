@@ -46,10 +46,10 @@ def popular_posts(request):
         })
 
 def question(request, id):
-#    try:
-    posts = Question.objects.get(id=id)
-#    except Question.DoesNotExist:
-#       raise Http404
+    try:
+        posts = Question.objects.get(id=id)
+    except Question.DoesNotExist:
+       raise Http404
     comment = Answer.objects.filter(question__id=id)
     return render(request, 'quest.html', {
         'title': posts.title,
