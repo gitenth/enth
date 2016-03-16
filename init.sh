@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-mkdir /home/box/web/uploads
 
 #nginx-settings
 sudo rm /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
@@ -24,11 +23,11 @@ python manage.py startapp qa
 
 #templates
 mkdir /home/box/web/ask/templates
-cp /home/box/web/edit/templates/.  /home/box/web/ask/templates/
+cp /home/box/web/edit/templates/*  /home/box/web/ask/templates/
 
-#ask_views.py
+#qa_views.py
 rm /home/box/web/ask/qa/views.py
-cp /home/box/web/edit/ask_views.py /home/box/web/ask/qa/views.py
+cp /home/box/web/edit/qa_views.py /home/box/web/ask/qa/views.py
 
 #ask_urls.py
 rm /home/box/web/ask/ask/urls.py
@@ -53,8 +52,9 @@ mysql -uroot -e "FLUSH PRIVILEGES;"
 python /home/box/web/ask/manage.py syncdb
 
 #gunicorn - start
-cd /home/box/web/ask/ask
-sudo gunicorn --bind 0.0.0.0:8080 ask.wsgi:application
+#cd /home/box/web/ask/ask
+#sudo gunicorn --bind 0.0.0.0:8080 ask.wsgi:application
+python /home/box/web/ask/manage.py runserver
 
 
 #там два каталога, sites-available, и sites-enabled, заходите в sites-available,

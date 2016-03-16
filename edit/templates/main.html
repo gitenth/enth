@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="{% static 'uploads/css/bootstrap.css' %}">
 </head>
 <body>
-<nav><ul class="pagination">
+<div>
+<div class="pagination pagination-centered"><ul class="pagination">
 {% for p in paginator.page_range %}
     {% if p.number == page.number %}
-    <li class="active">
+        <li class="active">
     {% else %}
-    <li>
+        <li>
     {% endif %}
-        <a href="{{ paginator.baseurl }}{{ p.number }}">
-        {{ p.number }}</a>
+        <a href="{{ paginator.baseurl }}{{ p }}">{{ p }}</a>
     </li>
     {% endfor %}
-</ul></nav>
+</ul></div>
 
 <div class="container-fluid">
   <div class="row-fluid">
@@ -26,12 +26,13 @@
       <!--Sidebar content-->
     </div>
     <div class="span10">
-        {% for p in post %}
+        {% for p in page %}
+            <p></p>
             <a href="/question/{{ p.id }}/"> {{ p.title }}</a>
         {% endfor %}
     </div>
   </div>
 </div>
-
+</div>
 </body>
 </html>

@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^ask/', views.test),
     url(r'^popular/', views.popular_posts),
     url(r'^new/$', views.test),
-    url(r'^questions/(?P<id>\d+)/$', views.question),
+    url(r'^question/(?P<id>\d+)/$', views.question),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.post_list_all),
 )

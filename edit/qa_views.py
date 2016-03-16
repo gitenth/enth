@@ -28,7 +28,7 @@ def paginate(request, qs):
 def post_list_all(request):
     posts = Question.objects.all().order_by('-id')
     paginator, page = paginate(request, posts)
-    return render(request, 'index.html', {
+    return render(request, 'main.html', {
         'posts': page.object_list,
         'paginator': paginator,
         'page': page,
@@ -38,7 +38,7 @@ def post_list_all(request):
 def popular_posts(request):
     posts = Question.objects.all().order_by('-rating')
     paginator, page = paginate(request, posts)
-    return render(request, 'index.html', {
+    return render(request, 'main.html', {
         'posts': page.object_list,
         'paginator': paginator,
         'page': page,
@@ -46,13 +46,13 @@ def popular_posts(request):
         })
 
 def question(request, id):
-    try:
-        post = Question.objects.get(id=id)
-    except Question.DoesNotExist:
-        raise Http404
+#    try:
+    posts = Question.objects.get(id=id)
+#    except Question.DoesNotExist:
+#       raise Http404
     comment = Answer.objects.filter(question__id=id)
     return render(request, 'quest.html', {
         'title': posts.title,
         'text': posts.text,
-        'comment': comment.text,
+        'comment': comment,
         })

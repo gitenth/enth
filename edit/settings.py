@@ -102,6 +102,6 @@ USE_TZ = True
 
 STATIC_URL = '/home/box/web/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-    ('static', '/home/box/web/static/')
+    os.path.join(BASE_DIR, "public"),
+    ('public', '/home/box/web/public/')
 )
