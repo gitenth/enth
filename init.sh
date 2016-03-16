@@ -22,6 +22,10 @@ django-admin startproject ask
 cd /home/box/web/ask
 python manage.py startapp qa
 
+#templates
+mkdir /home/box/web/ask/templates
+cp /home/box/web/edit/templates/.  /home/box/web/ask/templates/
+
 #ask_views.py
 rm /home/box/web/ask/qa/views.py
 cp /home/box/web/edit/ask_views.py /home/box/web/ask/qa/views.py

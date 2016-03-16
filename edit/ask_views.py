@@ -32,8 +32,7 @@ def post_list_all(request):
         'posts': page.object_list,
         'paginator': paginator,
         'page': page,
-        'title': posts.title,
-        'id': posts.id,
+        'post': posts,
         })
 
 def popular_posts(request):
@@ -43,13 +42,15 @@ def popular_posts(request):
         'posts': page.object_list,
         'paginator': paginator,
         'page': page,
-        'title': posts.title,
-        'id': posts.id,
+        'post': posts,
         })
 
 def question(request, id):
-    post = Question.objects.get(id=id)
-    comment = Answer.objects.get(question__id=id)
+    try:
+        post = Question.objects.get(id=id)
+    except Question.DoesNotExist:
+        raise Http404
+    comment = Answer.objects.filter(question__id=id)
     return render(request, 'quest.html', {
         'title': posts.title,
         'text': posts.text,

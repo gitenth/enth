@@ -7,8 +7,30 @@
     <link rel="stylesheet" href="bootstrap.css">
 </head>
 <body>
-<div>
-    
+<nav><ul class="pagination">
+{% for p in paginator.page_range %}
+    {% if p.number == page.number %}
+    <li class="active">
+    {% else %}
+    <li>
+    {% endif %}
+        <a href="{{ paginator.baseurl }}{{ p.number }}">
+        {{ p.number }}</a>
+    </li>
+    {% endfor %}
+</ul></nav>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <!--Sidebar content-->
+    </div>
+    <div class="span10">
+        {% for p in post %}
+            <a href="/question/{{ p.id }}/"> {{ p.title }}</a>
+        {% endfor %}
+    </div>
+  </div>
 </div>
 
 </body>

@@ -50,6 +50,22 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'ask.urls'
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': ['/home/box/web/ask/templates',],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
 WSGI_APPLICATION = 'ask.wsgi.application'
 
 
@@ -60,8 +76,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'myproject',
-        'USER': 'root',
-        'PASSWORD': '',
+        'USER': 'enth1',
+        'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
@@ -85,3 +101,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/home/box/web/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    ('static', '/home/box/web/static/')
+)
