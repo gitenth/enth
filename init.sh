@@ -52,8 +52,8 @@ mysql -uroot -e "FLUSH PRIVILEGES;"
 python /home/box/web/ask/manage.py syncdb
 
 #gunicorn - start
-#cd /home/box/web/ask/ask
-#sudo gunicorn --bind 0.0.0.0:8080 ask.wsgi:application
+cd /home/box/web/ask/ask
+sudo gunicorn --bind 0.0.0.0:8080 ask.wsgi:application
 python /home/box/web/ask/manage.py runserver 0.0.0.0:8080
 
 
@@ -61,3 +61,6 @@ python /home/box/web/ask/manage.py runserver 0.0.0.0:8080
 #копируете default в какой-то новый свой, там все удаляете и пишете что нужно,
 #делаете символическую ссылку этого своего конфига в sites-enabled, удаляете из sites-enabled default,
 #перезапускаете сервис
+#netstat -tlnp проверить какие порты прослушиваются
+#sudo apt-get install w3m
+#w3m url текстовый браузер для диагностики проблем
