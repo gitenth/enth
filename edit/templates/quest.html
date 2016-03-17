@@ -12,8 +12,9 @@
     </h7>
     <p></p>
 {% endfor %}
-<form method="POST">
+<form method="POST" action="/question/{{ question_id }}">
     {% csrf_token %}
     {{ form.as_p }}
 <\form>
+
 {% endblock %}

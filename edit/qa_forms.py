@@ -10,4 +10,4 @@ class AskForm(ModelForm):
 class AnswerForm(ModelForm):
     class Meta:
         model = Answer
-        fields = ['text']
+        fields = ['text', 'question'    ]

@@ -64,6 +64,7 @@ def question(request, question_id):
         'text': posts.text,
         'comment': comment,
         'form': form,
+        : 'question_id': question_id
         })
 
 def add_quest(request):
@@ -77,3 +78,7 @@ def add_quest(request):
     return render(request, 'add_quest.html',{
         'form': form,
         })
+
+def add_comment(request):
+    if request.method == "POST":
+        return render("OK")
