@@ -42,7 +42,7 @@ sleep 2s
 #mysql - configuration
 sudo /etc/init.d/mysql restart
 sleep 5s
-#mysql -uroot -e "create database myproject;"
+mysql -uroot -e "create database myproject;"
 #mysql -uroot -e "CREATE USER 'enth'@'localhost' IDENTIFIED BY 'password';"
 #mysql -uroot -e "GRANT ALL PRIVILEGES ON * . * TO 'enth'@'localhost';"
 #mysql -uroot -e "FLUSH PRIVILEGES;"
@@ -50,15 +50,18 @@ sleep 5s
 #syncdb
 python /home/box/web/ask/manage.py syncdb
 sleep 5s
+
 #nginx-settings
 sudo rm /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo ln -s /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/test.conf
 sudo /etc/init.d/nginx restart
 sleep 5s
+
 #gunicorn - settings
 sudo ln -s /home/box/web/etc/gunicorn.conf   /etc/gunicorn.d/test
 sudo /etc/init.d/gunicorn restart
 sleep 5s
+
 #gunicorn - start
 cd /home/box/web/ask/ask
 sudo gunicorn --bind 0.0.0.0:8080 ask.wsgi:application
