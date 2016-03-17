@@ -35,7 +35,7 @@ rm /home/box/web/ask/qa/models.py
 cp /home/box/web/edit/qa_models.py /home/box/web/ask/qa/models.py
 
 #qa_forms.py
-rm /home/box/web/ask/qa/forms.py
+#rm /home/box/web/ask/qa/forms.py
 cp /home/box/web/edit/qa_forms.py /home/box/web/ask/qa/forms.py
 
 sleep 2s

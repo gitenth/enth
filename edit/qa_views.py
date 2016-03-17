@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.paginator import Paginator
 from qa.models import Question, Answer
-from qa.form import AskForm, AnswerForm
+from qa.forms import AskForm, AnswerForm
 
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
@@ -56,7 +56,7 @@ def question(request, question_id):
         form = AnswerForm(request.POST)
         if form.is_valid():
             post = form.save()
-            return HttpResponseRedirect('/question/%s' % question_id)
+            return HttpResponseRedirect('/question/%s' % post.id)
     else:
         form = AnswerForm()
     return render(request, 'quest.html', {
@@ -64,7 +64,7 @@ def question(request, question_id):
         'text': posts.text,
         'comment': comment,
         'form': form,
-        : 'question_id': question_id
+        'question_id': question_id
         })
 
 def add_quest(request):
@@ -82,3 +82,5 @@ def add_quest(request):
 def add_comment(request):
     if request.method == "POST":
         return render("OK")
+    else:
+        return HttpResponseRedirect('')
