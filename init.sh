@@ -37,9 +37,9 @@ cp /home/box/web/edit/ask_urls.py /home/box/web/ask/ask/urls.py
 rm /home/box/web/ask/ask/settings.py
 cp /home/box/web/edit/settings.py /home/box/web/ask/ask/
 
-#models.py
+#qa_models.py
 rm /home/box/web/ask/qa/models.py
-cp /home/box/web/edit/models.py /home/box/web/ask/qa/
+cp /home/box/web/edit/qa_models.py /home/box/web/ask/qa/models.py
 
 #mysql - configuration
 sudo /etc/init.d/mysql restart

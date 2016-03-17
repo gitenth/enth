@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'static/css/bootstrap.css' %}">
-</head>
-<body>
-<div>
+{% extends 'index.html' %}
+
+{% block questions %}
+
 <div class="pagination pagination-centered"><ul class="pagination">
 {% for p in paginator.page_range %}
     {% if p.number == page.number %}
@@ -33,6 +27,5 @@
     </div>
   </div>
 </div>
-</div>
-</body>
-</html>
+
+{% endblock %}

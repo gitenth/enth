@@ -1,7 +1,8 @@
 from django.shortcuts import render, render_to_response
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.paginator import Paginator
 from qa.models import Question, Answer
+from qa.form import AskForm, AnswerForm
 
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
@@ -45,14 +46,34 @@ def popular_posts(request):
         'post': posts,
         })
 
-def question(request, id):
+def question(request, question_id):
     try:
-        posts = Question.objects.get(id=id)
+        posts = Question.objects.get(id=question_id)
     except Question.DoesNotExist:
        raise Http404
-    comment = Answer.objects.filter(question__id=id)
+    comment = Answer.objects.filter(question__id=question_id)
+    if request.method == 'POST':
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            post = form.save()
+            return HttpResponseRedirect('/question/%s' % question_id)
+    else:
+        form = AnswerForm()
     return render(request, 'quest.html', {
         'title': posts.title,
         'text': posts.text,
         'comment': comment,
+        'form': form,
+        })
+
+def add_quest(request):
+    if request.method == 'POST':
+        form = AskForm(request.POST)
+        if form.is_valid():
+            post = form.save()
+            return HttpResponseRedirect('/question/%s/' % post.id)
+    else:
+        form = AskForm()
+    return render(request, 'add_quest.html',{
+        'form': form,
         })
