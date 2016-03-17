@@ -56,7 +56,7 @@ def question(request, question_id):
         form = AnswerForm(request.POST)
         if form.is_valid():
             post = form.save()
-            return HttpResponseRedirect('/question/%s' % post.id)
+            return HttpResponseRedirect('/question/%s/' % post.id)
     else:
         form = AnswerForm()
     return render(request, 'quest.html', {
