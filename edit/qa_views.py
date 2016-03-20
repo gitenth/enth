@@ -103,7 +103,7 @@ def register(request):
             return HttpResponseRedirect('/')
         else:
             args['form'] = new_user_form
-    return render_to_response("register.html", args)
+    return render(request, "register.html", args)
 
 def login(request):
     args = {}
@@ -119,7 +119,7 @@ def login(request):
             args['login_error'] = u'Не верный логин или пароль'
             return render_to_response('login.html', args)
     else:
-        return render_to_response('login.html',args)
+        return render(request, 'login.html', args)
 
 def logout(request):
     auth.logout(request)
