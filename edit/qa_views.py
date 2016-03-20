@@ -116,7 +116,7 @@ def login(request):
             auth.login(request, user)
             return HttpResponseRedirect('/')
         else:
-            args['login_error'] = u'Не верный логин или пароль'
+            args['login_error'] = u'Error login or password'
             return render_to_response('login.html', args)
     else:
         return render(request, 'login.html', args)
