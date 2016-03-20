@@ -3,6 +3,10 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.paginator import Paginator
 from qa.models import Question, Answer
 from qa.forms import AskForm, AnswerForm
+from django.contrib.auth.forms import UserCreationForm
+from django.core.context_processors import csrf
+from django.contrib import auth
+
 
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
@@ -56,7 +60,7 @@ def question(request, question_id):
         form = AnswerForm(request.POST)
         if form.is_valid():
             post = form.save()
-            return HttpResponseRedirect('/question/%s/' % post.id)
+            return HttpResponseRedirect('/question/%s/' % question_id)
     else:
         form = AnswerForm()
     return render(request, 'quest.html', {
@@ -83,4 +87,40 @@ def add_comment(request):
     if request.method == "POST":
         return render("OK")
     else:
-        return HttpResponseRedirect('')
+        return HttpResponseRedirect('/')
+
+def register(request):
+    args = {}
+    args.update(csrf(request))
+    args['form'] = UserCreationForm()
+    if request.method == 'POST':
+        new_user_form = UserCreationForm(request.POST)
+        if new_user_form.is_valid():
+            new_user_form.save()
+            new_user = auth.authenticate(username=new_user_form.cleaned_data['username'],
+                                         password=new_user_form.cleaned_data['password2'])
+            auth.login(request, new_user)
+            return HttpResponseRedirect('/')
+        else:
+            args['form'] = new_user_form
+    return render_to_response("register.html", args)
+
+def login(request):
+    args = {}
+    args.update(csrf(request))
+    if request.POST:
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return HttpResponseRedirect('/')
+        else:
+            args['login_error'] = u'Не верный логин или пароль'
+            return render_to_response('login.html', args)
+    else:
+        return render_to_response('login.html',args)
+
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect('/')
